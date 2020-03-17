@@ -5,8 +5,18 @@
              <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
                          <meta http-equiv="X-UA-Compatible" content="ie=edge">
              <title>Document</title>
+             <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
+             <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
 </head>
 <body>
-  
+    <div id='map' style='width: 400px; height: 300px;'></div>
+
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoibGl0dmlub3Z2byIsImEiOiJjazd3MDh2cnYxY3F0M2xuMWpsMTMxZTk1In0.tb1_WDFx2GwdkY-xv4WSig';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11'
+        });
+    </script>
 </body>
 </html>
