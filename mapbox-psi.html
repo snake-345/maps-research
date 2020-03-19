@@ -6,9 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
-    <!--
      <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
-     -->
 </head>
 <body>
 	<div id='map' style='width: 600px; height: 400px;'></div>
@@ -18,8 +16,9 @@
 		var map = new mapboxgl.Map({
 			container: 'map',
 			center: [-118.243344,34.052238],
+			boxZoom: true,
 			zoom: 4,
-			style: 'mapbox://styles/mapbox/light-v10',
+			style: 'mapbox://styles/mapbox/streets-v11?optimize=true',
 		});
 	</script>
 </body>
