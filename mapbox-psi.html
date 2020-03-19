@@ -16,10 +16,10 @@
 		var map = new mapboxgl.Map({
 			container: 'map',
 			center: [-118.243344,34.052238],
-			boxZoom: true,
 			zoom: 4,
 			style: 'mapbox://styles/mapbox/streets-v11?optimize=true',
 		});
 		map.addControl(new mapboxgl.FullscreenControl());
+		map.addControl(new mapboxgl.NavigationControl());
 	</script>
 </body>
