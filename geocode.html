@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+             <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+                         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+             <title>Document</title>
+             <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
+             <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
+             <script src='https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js'></script>
+              <style>
+                 h1 {
+                     font-family: sans-serif;
+                 }
+                 .marker {
+                   width: 30px;
+                   height: 30px;
+                 }
+             </style>
+</head>
+<body>
+    <h1 id="search-and-pins">Map with SDK geocoding</h1>
+    <div class='sdk-geocoding' style='width: 600px; height: 400px;'></div>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoibGl0dmlub3Z2byIsImEiOiJjazd3MDh2cnYxY3F0M2xuMWpsMTMxZTk1In0.tb1_WDFx2GwdkY-xv4WSig';
+
+        const mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
+        const markers = [];
+        const dealers = ['Las Vegas Nevada', 'Santa Barbara California'];
+        const requests = [];
+
+        dealers
+        	.forEach(dealer =>
+          	requests.push(
+              mapboxClient
+                .geocoding
+                .forwardGeocode({
+                    query: dealer,
+                    autocomplete: false,
+                    limit: 1
+                })
+                .send())
+            );
+
+        Promise.all(requests).then(results => {
+            results.forEach(response => {
+                if (
+                    response &&
+                    response.body &&
+                    response.body.features &&
+                    response.body.features.length
+                ) {
+                    markers.push(new mapboxgl.Marker().setLngLat(response.body.features[0].center));
+                }
+            });
+            const customMap = new mapboxgl.Map({
+                container: document.querySelector('.sdk-geocoding'),
+                zoom: 5,
+                style: 'mapbox://styles/mapbox/streets-v11',
+        	});
+            customMap.fitBounds(markers.map(marker => marker.getLngLat()), {
+                padding: 50,
+            });
+       		markers.forEach(marker => marker.addTo(customMap));
+        });
+    </script>
+</body>
+</html>
+
+
