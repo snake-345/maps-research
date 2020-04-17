@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>B</title>
+   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAep9Y0FTnY9ol_BNfd_6QzFnjnjOC7Xd8"></script>
+</head>
+<body>
+    <input id="input" type="text">
+    <script>
+        var autocomplete = new google.maps.places.Autocomplete(document.getElementById('input'), {
+            types: ['geocode'],
+        });
+
+        autocomplete.setFields(['name']);
+    </script>
+
+</body>
+</html>
