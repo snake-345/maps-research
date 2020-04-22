@@ -9,8 +9,8 @@
     <input id="input" type="text">
     <script>
         const autocomplete = new google.maps.places.Autocomplete(document.getElementById('input'), {
-            types: ['address_component'],
-            fields: ['name'], // restrict returned fields to reduce costs
+            types: ['geocode'],
+            fields: ['address_component'], // restrict returned fields to reduce costs
         });
 
         autocomplete.addListener('place_changed', () => {
