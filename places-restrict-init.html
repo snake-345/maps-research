@@ -8,12 +8,12 @@
 <body>
     <input id="input" type="text">
     <script>
-        var autocomplete = new google.maps.places.Autocomplete(document.getElementById('input'), {
+        const autocomplete = new google.maps.places.Autocomplete(document.getElementById('input'), {
             types: ['address_component'],
             fields: ['name'], // restrict returned fields to reduce costs
         });
 
-        address.autocomplete('place_changed', () => {
+        autocomplete.addListener('place_changed', () => {
             const place = address.getPlace();
 
             console.log('place', place);
