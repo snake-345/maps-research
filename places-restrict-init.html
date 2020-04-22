@@ -14,7 +14,7 @@
         });
 
         autocomplete.addListener('place_changed', () => {
-            const place = address.getPlace();
+            const place = autocomplete.getPlace();
 
             console.log('place', place);
         });
